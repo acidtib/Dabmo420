@@ -6,6 +6,9 @@
   "imports": {
     "@std/fs": "jsr:@std/fs@^1.0.17",
     "@std/path": "jsr:@std/path@^1.0.9",
-    "discord.js": "npm:discord.js@^14.19.3"
+    "discord.js": "npm:discord.js@^14.19.3",
+    "pg": "npm:pg@^8.16.0",
+    "pg-hstore": "npm:pg-hstore@^2.3.4",
+    "sequelize": "npm:sequelize@^6.37.7",
   }
 }
