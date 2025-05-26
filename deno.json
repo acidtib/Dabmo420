@@ -1,0 +1,11 @@
+{
+  "tasks": {
+    "dev": "deno run --allow-env --env-file --allow-net --allow-read src/main.ts",
+    "deploy-commands": "deno run --allow-env --env-file --allow-net --allow-read deploy-commands.ts"
+  },
+  "imports": {
+    "@std/fs": "jsr:@std/fs@^1.0.17",
+    "@std/path": "jsr:@std/path@^1.0.9",
+    "discord.js": "npm:discord.js@^14.19.3"
+  }
+}
