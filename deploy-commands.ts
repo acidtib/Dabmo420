@@ -46,7 +46,7 @@ try {
 
 	const data = await rest.put(
 		// Routes.applicationGuildCommands(clientId, guildId),
-        Routes.applicationCommands(clientId),
+    Routes.applicationCommands(clientId),
 		{ body: commands }
 	);
 
