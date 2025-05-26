@@ -3,7 +3,7 @@ import sequelize from "../lib/database.ts";
 
 class Guild extends Model {
   static associate(models: any) {
-    // Define associations here
+    this.belongsTo(models.Users, { foreignKey: 'ownerId' });
   }
 }
 
@@ -29,6 +29,11 @@ Guild.init(
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true
+    },
+    memberCount: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0
     },
   },
   {

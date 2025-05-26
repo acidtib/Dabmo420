@@ -4,7 +4,7 @@ export async function up(
   queryInterface: QueryInterface,
   sequelize: Sequelize,
 ): Promise<void> {
-  await queryInterface.createTable('Guilds', {
+  await queryInterface.createTable('Users', {
     id: {
       allowNull: false,
       autoIncrement: true,
@@ -14,21 +14,17 @@ export async function up(
     discordId: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true
     },
-    name: {
+    username: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    icon: {
+    avatar: {
       type: DataTypes.STRING
     },
-    ownerId: {
+    banner: {
       type: DataTypes.STRING
-    },
-    active: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: true
     },
     createdAt: {
       allowNull: false,
@@ -45,5 +41,5 @@ export async function down(
   queryInterface: QueryInterface,
   sequelize: Sequelize,
 ): Promise<void> {
-  await queryInterface.dropTable('Guilds');
+  await queryInterface.dropTable('Users');
 }
