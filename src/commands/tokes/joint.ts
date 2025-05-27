@@ -12,19 +12,22 @@ export default {
 				.setRequired(false)
 		),
 	async execute(interaction: any) {
-		let content;
+		let input;
 		if (interaction.options.get('members')) {
 			const members = interaction.options.getString('members')
-			content = await llmChat(`/joint with ${members}`)
+			input = `/joint with ${members}`
 		} else {
-			content = await llmChat(`/joint`);
+			input = "/joint"
 		}
+
+		const content = await llmChat(input);
 
 		// save the session
 		await Sessions.create({
 			discordGuildId: interaction.guild.id,
 			discordUserId: interaction.user.id,
 			kind: 'joint',
+			input,
 			content,
 		});
 		

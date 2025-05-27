@@ -12,19 +12,22 @@ export default {
 				.setRequired(false)
 		),
 	async execute(interaction: any) {
-		let content;
+		let input;
 		if (interaction.options.get('members')) {
 			const members = interaction.options.getString('members')
-			content = await llmChat(`/bong with ${members}`)
+			input = `/bong with ${members}`
 		} else {
-			content = await llmChat(`/bong`);
+			input = "/bong"
 		}
+
+		const content = await llmChat(input);
 
 		// save the session
 		await Sessions.create({
 			discordGuildId: interaction.guild.id,
 			discordUserId: interaction.user.id,
 			kind: 'bong',
+			input,
 			content,
 		});
 
