@@ -1,5 +1,5 @@
-import { ChatCompletionMessageParam } from "openai/resources/chat/completions";
-import OpenAI from "openai";
+import { ChatCompletionMessageParam } from "npm:openai/resources/chat/completions";
+import OpenAI from "npm:openai";
 import type { LLMOptions } from "../types.ts";
 
 class LLM {
