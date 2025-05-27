@@ -1,11 +1,12 @@
-# Build stage
+# Build Stage
 FROM denoland/deno:latest AS builder
 WORKDIR /app
 COPY . .
-RUN deno cache src/main.ts
+RUN deno compile --allow-net --allow-env --allow-read --output /app/bot src/main.ts
 
-# Production stage
+# Runtime Stage
 FROM denoland/deno:latest
 WORKDIR /app
-COPY --from=builder /app .
-CMD ["deno", "run", "--allow-net", "--allow-env", "--allow-read", "src/main.ts"]
+COPY --from=builder /app/bot /app/bot
+
+CMD ["/app/bot"]
