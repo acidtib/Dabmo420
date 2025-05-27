@@ -2,9 +2,9 @@ import { SlashCommandBuilder } from 'discord.js';
 
 export default {
 	data: new SlashCommandBuilder()
-		.setName('ping')
-		.setDescription('Replies with Pong!'),
+		.setName('stats')
+		.setDescription('Your stats'),
 	async execute(interaction: any) {
-		await interaction.reply('Pong!');
+		await interaction.reply('Your stats will be here!');
 	},
 };
