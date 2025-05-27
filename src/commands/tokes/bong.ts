@@ -1,12 +1,33 @@
 import { SlashCommandBuilder } from "discord.js";
 import { llmChat } from "../../utils/llmChat.ts";
+import Sessions from "../../models/sessions.ts";
 
 export default {
 	data: new SlashCommandBuilder()
 		.setName('bong')
-		.setDescription('Taking a bong hit'),
+		.setDescription('Taking a bong hit')
+		.addStringOption(option =>
+			option.setName('members')
+				.setDescription('The members to smoke with')
+				.setRequired(false)
+		),
 	async execute(interaction: any) {
-		const content = await llmChat(`/bong`);
+		let content;
+		if (interaction.options.get('members')) {
+			const members = interaction.options.getString('members')
+			content = await llmChat(`/bong with ${members}`)
+		} else {
+			content = await llmChat(`/bong`);
+		}
+
+		// save the session
+		await Sessions.create({
+			discordGuildId: interaction.guild.id,
+			discordUserId: interaction.user.id,
+			kind: 'bong',
+			content,
+		});
+
 		await interaction.reply(`<@${interaction.member.id}> ${content}`);	
 	},
 };

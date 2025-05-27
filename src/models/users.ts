@@ -4,6 +4,7 @@ import sequelize from "../lib/database.ts";
 class User extends Model {
   static associate(models: any) {
     this.hasMany(models.Guilds, { foreignKey: 'ownerId' });
+    this.hasMany(models.Sessions, { foreignKey: 'discordUserId' });
   }
 }
 
