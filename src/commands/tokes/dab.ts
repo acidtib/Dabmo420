@@ -1,6 +1,25 @@
 import { SlashCommandBuilder } from "discord.js";
 import { llmChat } from "../../utils/llmChat.ts";
 import Sessions from "../../models/sessions.ts";
+import User from "../../models/users.ts";
+
+async function upsertUser(user: any): Promise<void> {
+	const userData = {
+		discordId: user.id,
+		username: user.username,
+		avatar: user.displayAvatarURL({ size: 2048 }),
+		banner: user.bannerURL({ size: 2048 }),
+	};
+
+	const [userRecord, created] = await User.findOrCreate({
+		where: { discordId: userData.discordId },
+		defaults: userData,
+	});
+
+	if (!created) {
+		await userRecord.update(userData);
+	}
+}
 
 export default {
 	data: new SlashCommandBuilder()
@@ -19,6 +38,9 @@ export default {
 		} else {
 			input = "/dab"
 		}
+
+		// Ensure user exists in database
+		await upsertUser(interaction.user);
 
 		const content = await llmChat(input);
 
