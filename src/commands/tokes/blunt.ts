@@ -1,10 +1,12 @@
-import { SlashCommandBuilder } from 'discord.js';
+import { SlashCommandBuilder } from "discord.js";
+import { llmChat } from "../../utils/llmChat.ts";
 
 export default {
 	data: new SlashCommandBuilder()
 		.setName('blunt')
-		.setDescription('Smoke a blunt'),
+		.setDescription('Smoking a blunt'),
 	async execute(interaction: any) {
-		await interaction.reply(`<a:blunt:1372900000000000000>`);
+		const content = await llmChat(`/blunt`);
+		await interaction.reply(`<@${interaction.member.id}> ${content}`);
 	},
 };
