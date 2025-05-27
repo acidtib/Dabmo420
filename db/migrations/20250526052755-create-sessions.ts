@@ -25,6 +25,9 @@ export async function up(
         key: 'discordId',
       },
     },
+    input: {
+      type: DataTypes.TEXT,
+    },
     content: {
       type: DataTypes.TEXT,
       allowNull: false,

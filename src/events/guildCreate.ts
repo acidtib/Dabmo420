@@ -48,10 +48,11 @@ export default {
       
       const owner = await guild.fetchOwner();
       
-      await Promise.all([
-        upsertUser(owner),
-        upsertGuild(guild)
-      ]);
+      // First create/update the user
+      await upsertUser(owner);
+      
+      // Then create/update the guild
+      await upsertGuild(guild);
       
       console.log(`Successfully processed guild: ${guild.name}`);
     } catch (error) {

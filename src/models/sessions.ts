@@ -22,8 +22,11 @@ Sessions.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    input: {
+      type: DataTypes.TEXT,
+    },
     content: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
   },
