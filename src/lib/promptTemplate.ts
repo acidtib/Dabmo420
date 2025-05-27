@@ -1,4 +1,4 @@
-import { ChatCompletionMessageParam } from "openai/resources/chat/completions";
+import { ChatCompletionMessageParam } from "npm:openai/resources/chat/completions";
 import type { LLMOptions, MessageContent, MessageRole, ContentBlock, TextContent, ImageContent } from "../types.ts";
 
 export class PromptTemplate {
