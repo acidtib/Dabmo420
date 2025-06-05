@@ -36,6 +36,7 @@ export default {
 				{ name: 'Blunts 🌿', value: (sessionsByType['blunt'] || 0).toString(), inline: true },
 				{ name: 'Bongs 🌊', value: (sessionsByType['bong'] || 0).toString(), inline: true },
 				{ name: 'Joints 🚬', value: (sessionsByType['joint'] || 0).toString(), inline: true },
+				{ name: 'Pen Hits 🖊️', value: (sessionsByType['pen'] || 0).toString(), inline: true },
 			);
 
 		await interaction.reply({ embeds: [embed] });
